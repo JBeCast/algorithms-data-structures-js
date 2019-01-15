@@ -67,4 +67,95 @@ class DoublyLinkedList {
     // Return the popped node
     return oldHead;
   }
+
+  unshift(val) { // Insert a new node at the beginning of the list
+    // Create the new node
+    const newHead = new Node(val);
+    // If there were no nodes in the list, set the node as the head and tail
+    if (!this.length) this.head = this.tail = newHead;
+    else {
+      // Point the next link of the new node to the previous head
+      newHead.next = this.head;
+      // Point the previous tail's next to the new node
+      this.head.prev = newHead;
+      // Set the new node as head
+      this.head = newHead;
+    }
+    // Increase list length
+    ++this.length;
+    // Return the list;
+    return this;
+  }
+
+  get(index) { // get the node at the given index (1-based)
+    // Edge cases
+    if (!this.length || index < 1 || index > this.length) return null;
+    // Depending on the index, we'll traverse the list forward or backwards
+    else return index <= this.length / 2 ?
+      this.getFromHead(index) :
+      this.getFromTail(index);
+  }
+
+  getFromHead(index) {
+    // Start at the head of the list
+    let node = this.head;
+    // Traverse the list until the nth item
+    for (let i = 1; i < index; i++) node = node.next;
+    // Return the requested node
+    return node;
+  }
+
+  getFromTail(index) {
+    // Start at the tail of the list
+    let node = this.tail;
+    // Traverse the list until the nth item
+    for (let i = this.length; i > index; i--) node = node.prev;
+    // Return the requested node
+    return node;
+  }
+
+  set(index, val) { // Change the value of the node at the given index
+    const node = this.get(index);
+    if (!node) return false;
+    else node.val = val;
+    return true;
+  }
+
+  insert(index, val) { // Add a node at a specific position (1-based)
+    // Insertion index can't be lower than 1 or greater than length + 1
+    if (index < 1 || index > this.length + 1) return false;
+    // Create the new node to be added
+    const newNode = new Node(val);
+    // If the index is 1, we should unshift the new node
+    if (index === 1) return !!this.unshift(val);
+    // Else if the index is the length of the list + 1, push the new node
+    if (index > this.length) return !!this.push(val);
+    // Else actually insert it
+    // Keep a reference to the node to be displaced forward
+    const nextNode = this.get(index);
+    // Keep a reference to the previous node
+    const prevNode = nextNode.prev;
+    // Point the previous node's next to the newNode
+    prevNode.next = newNode;
+    // Point next node's prev to the newNode
+    nextNode.prev = newNode;
+    // Set pointers for new node
+    newNode.prev = prevNode;
+    newNode.next = nextNode;
+    // Increase list length
+    ++this.length;
+    // Return true indicating that the operation was successful
+    return true;
+  }
+  remove(index) { // Remove and return the node at the specified index
+    if (index < 1 || index > this.length) return null;
+    if (index === 1) return this.shift();
+    if (index === this.length) return this.pop();
+    const node = this.get(index);
+    node.prev.next = node.next;
+    node.next.prev = node.prev;
+    node.prev = node.next = null;
+    --this.length;
+    return node;
+  }
 }

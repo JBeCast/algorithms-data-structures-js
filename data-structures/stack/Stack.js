@@ -1,9 +1,7 @@
-class Node {
-  constructor(val) {
-    this.val = val;
-    this.next = null;
-  }
-}
+const Node = val => ({
+  val,
+  next: null,
+});
 
 class Stack {
   constructor() {
@@ -13,7 +11,7 @@ class Stack {
   }
 
   push(val) {
-    const newNode = new Node(val);
+    const newNode = Node(val);
     if (!this.size) this.top = this.bottom = newNode;
     else {
       newNode.next = this.top;
@@ -25,7 +23,7 @@ class Stack {
   pop() {
     if (!this.size) return null;
     const poppedNode = this.top;
-    this.size--;
+    --this.size;
     if (!this.size) this.top = this.bottom = null;
     else this.top = poppedNode.next;
     return poppedNode.val;

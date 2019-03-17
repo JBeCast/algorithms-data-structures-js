@@ -1,10 +1,12 @@
-function charCount(str) {
-    const frequency = {};
+const charCount = str => {
+  const frequency = {};
 
-    for (let char of str) {
-        const c = char.toLowerCase();
-        /[a-z0-9]/.test(c) && frequency[c] ? frequency[c]++ : frequency[c] = 1;
-    }
+  for (let char of str) {
+    const c = char.toLowerCase();
+    /[a-z0-9]/.test(c) && frequency[c] ? frequency[c]++ : frequency[c] = 1;
+  }
 
-    return frequency;
+  return frequency;
 }
+
+module.exports = isAnagram;

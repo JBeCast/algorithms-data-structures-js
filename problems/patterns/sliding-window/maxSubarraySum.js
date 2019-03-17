@@ -1,7 +1,7 @@
 // Function that takes an array and a number and returns the maximum sum of n
 // consecutive elements in the array.
 
-function maxSubarraySum(arr, n) {
+const maxSubarraySum = (arr, n) => {
   // Edge cases
   if (arr.length < n || n <= 0) return null;
 
@@ -24,11 +24,4 @@ function maxSubarraySum(arr, n) {
   return maxSum;
 }
 
-console.log(maxSubarraySum([1, 2, 5, 3, 9, 3, 2], 3)) // 17
-console.log(maxSubarraySum([1, 2, 5, 3, 9, 3, 2], 4)) // 20
-console.log(maxSubarraySum([1, 2, 5, 3, 9, 3, 2], 1)) // 9
-console.log(maxSubarraySum([5, 3, 9, 3, 2, 13, 15], 1)) // 28
-console.log(maxSubarraySum([1, 2, 3], 3)) // 6
-console.log(maxSubarraySum([1, 2], 3)) // null
-console.log(maxSubarraySum([], 2)) // null
-console.log(maxSubarraySum([1, 2, 5, 3, 9, 3, 2], -1)) // null
+module.exports = maxSubarraySum;

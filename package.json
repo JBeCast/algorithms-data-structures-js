@@ -1,0 +1,31 @@
+{
+  "name": "algorithms-data-structures",
+  "version": "1.0.0",
+  "description": "Some algorithms and approaches for solving programming problems efficiently, as well as some implementation examples of several data structures using JavaScript.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine": "~3.3.1"
+  },
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JBeCast/algorithms-data-structures-js.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "js",
+    "ES6",
+    "algorithms",
+    "exercises",
+    "data-structures"
+  ],
+  "author": "JBeCast",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JBeCast/algorithms-data-structures-js/issues"
+  },
+  "homepage": "https://github.com/JBeCast/algorithms-data-structures-js#readme"
+}

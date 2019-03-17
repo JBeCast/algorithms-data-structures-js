@@ -1,0 +1,6 @@
+node_modules
+
+# Jasmine examples
+lib/
+spec/jasmine_examples
+spec/helpers/jasmine_examples

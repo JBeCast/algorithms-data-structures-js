@@ -11,7 +11,6 @@ describe('charCount', () => {
     expect(ada.u).toBe(1);
     
     const abc = charCount('abc123,ABC123.Abc123;aBc123');
-    console.log('ABC', abc);
     expect(abc.a).toBe(4);
     expect(abc.b).toBe(4);
     expect(abc.c).toBe(4);

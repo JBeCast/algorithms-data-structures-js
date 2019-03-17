@@ -24,9 +24,8 @@ class SinglyLinkedList {
   pop() { // Remove and return the last element in the list
     if (!this.length) return null; // If the list is empty, we return null
     const prevTail = this.tail; // Keep a copy of the previous tail
-    let newTail = this.head; // Assign a new tail, initially to the previous head so we can traverse the list
-    while (newTail.next && newTail.next.next) newTail = newTail.next; // Traverse the list and find the 2nd to last element
-    newTail.next = null; // Erase the reference to the next element (the previous tail) from the new tail
+    const newTail = this.get(this.length - 1); // Get the 2nd to last element and assign it as the new tail (null if there isn't any, i.e. length === 1)
+    if (newTail) newTail.next = null; // Erase the reference to the next element (the previous tail) from the new tail (if tail node exists, i.e. not null)
     this.tail = newTail; // Assign the new tail to the list
     this.length--; // Subtract 1 to list's length
     if (!this.length) this.head = this.tail = null; // If the list is empty, both the head and the tail should be null

@@ -21,12 +21,11 @@ class SinglyLinkedList {
   pop() {
     if (!this.length) return null;
     const prevTail = this.tail;
-    let newTail = this.head;
-    while (newTail.next && newTail.next.next) newTail = newTail.next;
-    newTail.next = null;
+    const newTail = this.get(this.length - 1);
+    if (newTail) newTail.next = null;
     this.tail = newTail;
     this.length--;
-    if (!this.length) this.head = this.tail = null;
+    if (!this.length) this.head = null;
     return prevTail;
   }
 

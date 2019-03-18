@@ -108,4 +108,16 @@ class DoublyLinkedList {
     --this.length;
     return node;
   }
+
+  reverse() {
+    let currNode = this.head;
+    while(currNode) {
+      const nextNode = currNode.next;
+      [currNode.prev, currNode.next] = [currNode.next, currNode.prev];
+      currNode = nextNode;
+    }
+    [this.head, this.tail] = [this.tail, this.head];
+  }
 }
+
+module.exports = DoublyLinkedList;

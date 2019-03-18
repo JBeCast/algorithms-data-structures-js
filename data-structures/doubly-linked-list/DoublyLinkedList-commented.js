@@ -115,4 +115,14 @@ class DoublyLinkedList {
     this.length--; // Subtract 1 to the length of the list
     return node; // Return the removed node
   }
+
+  reverse() { // Reverse the list
+    let currNode = this.head;
+    while (currNode) { // Iterate through each node in the list
+      const nextNode = currNode.next; // Keep a reference to the next node
+      [currNode.prev, currNode.next] = [currNode.next, currNode.prev]; // Swap prev and next pointers
+      currNode = nextNode; // Proceed to the next node
+    }
+    [this.head, this.tail] = [this.tail, this.head]; // Swap head and tail
+  }
 }

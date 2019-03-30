@@ -1,5 +1,9 @@
 describe('SinglyLinkedList', () => {
   const SinglyLinkedList = require('./SinglyLinkedList');
+  const _clone = require('lodash/clone');
+
+  const sampleList = new SinglyLinkedList();
+  sampleList.push(1).push(2).push(3);
 
   describe('Class interface', () => {
 
@@ -42,6 +46,40 @@ describe('SinglyLinkedList', () => {
       // Push method returns a reference to the list object, so pushes can be chained
       sll.push(2).push(3).push(4).push(5);
       expect(sll.length).toBe(5); // Length should be increased after pushing
-    })
-  })
+      expect(sll.head.val).toBe(1); // Head value remains the same
+      expect(sll.tail.val).toBe(5);
+      expect(sll.tail.next).toBe(null);
+    });
+  });
+  
+  describe('Pop method', () => {
+    it('should behave as expected', () => {
+      const sll = _clone(sampleList);
+
+      expect(sll.length).toBe(3); // Initial length
+      expect(sll.tail.val).toBe(3);
+      let poppedNode = sll.pop();
+      expect(sll.length).toBe(2);
+      expect(sll.tail).not.toBe(poppedNode);
+      expect(poppedNode.val).toBe(3);
+      expect(poppedNode.next).toBe(null);
+      expect(sll.tail.val).toBe(2);
+      expect(sll.tail.next).toBe(null);
+      poppedNode = sll.pop();
+      expect(sll.length).toBe(1);
+      expect(poppedNode.val).toBe(2);
+      expect(sll.head).toBe(sll.tail); // Only one element remaining
+      expect(sll.tail.val).toBe(1);
+      poppedNode = sll.pop();
+      expect(poppedNode.val).toBe(1);
+      expect(sll.length).toBe(0);
+      expect(sll.head).toBe(null); // No elements remaining
+      expect(sll.tail).toBe(null);
+      poppedNode = sll.pop(); // Pop on an empty list
+      expect(poppedNode).toBe(null);
+      poppedNode = sll.pop(); // Once again
+      expect(poppedNode).toBe(null);
+    });
+  });
+
 });
